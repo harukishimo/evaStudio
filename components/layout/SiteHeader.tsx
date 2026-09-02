@@ -26,7 +26,7 @@ export function SiteHeader() {
 
   return (
     <>
-      <header className="sticky top-0 z-40 border-b border-[var(--line)] bg-[#050308]">
+      <header className="sticky top-0 z-40 border-b border-[var(--line)] bg-[#050308]/72 backdrop-blur-md">
         <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4 md:h-16 md:px-8">
           <Link href="/" className="min-w-0" onClick={() => setOpen(false)}>
             <span className="block truncate font-serif text-xl tracking-[0.06em] text-white md:text-2xl">

@@ -1,9 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { MetaChip } from "@/components/ui/MetaChip";
 import { PageHeading } from "@/components/ui/PageHeading";
+import { QuoteBlock } from "@/components/ui/QuoteBlock";
+import { SectionCard } from "@/components/ui/SectionCard";
 import { yoga } from "@/content/yoga";
+import { splitSentences } from "@/lib/display-split";
 
 export const metadata: Metadata = { title: "ヨガ&ピラティス" };
+
+const bodyworkSentences = splitSentences(yoga.bodywork);
 
 export default function YogaPage() {
   return (
@@ -11,24 +17,42 @@ export default function YogaPage() {
       <PageHeading title={yoga.heading} />
       <div className="grid gap-4 md:grid-cols-2">
         {yoga.classes.map((item) => (
-          <section
-            key={item.title}
-            className="rounded-2xl border border-white/10 bg-black/20 px-5 py-6"
-          >
-            <h2 className="text-gold">{item.title}</h2>
-            <div className="mt-3 space-y-2 text-sm leading-8 text-gold-soft">
-              {item.body.map((line) => (
-                <p key={line}>{line}</p>
+          <SectionCard key={item.title}>
+            <h2 className="font-serif text-gold">{item.title}</h2>
+            <div className="mt-3 max-w-[40rem] space-y-2">
+              {item.body.map((line, index) => (
+                <p
+                  key={line}
+                  className={
+                    index === 0
+                      ? "text-[0.95rem] leading-8 text-gold-soft"
+                      : "text-sm leading-8 text-gold-soft/80"
+                  }
+                >
+                  {line}
+                </p>
               ))}
             </div>
-          </section>
+          </SectionCard>
         ))}
       </div>
-      <section className="mt-8 rounded-2xl border border-white/10 px-5 py-6 md:px-8">
-        <p className="text-sm text-gold">{yoga.bodyworkLead}</p>
-        <h2 className="mt-2 font-serif text-2xl text-white">{yoga.bodyworkTitle}</h2>
-        <p className="mt-4 text-sm leading-8 text-gold-soft">{yoga.bodywork}</p>
-      </section>
+      <SectionCard className="mt-8">
+        <MetaChip>{yoga.bodyworkLead}</MetaChip>
+        <h2 className="mt-3 font-serif text-2xl text-white">{yoga.bodyworkTitle}</h2>
+        <div className="mt-4 max-w-[40rem] space-y-4">
+          {bodyworkSentences[0] ? (
+            <p className="text-sm leading-8 text-gold-soft">{bodyworkSentences[0]}</p>
+          ) : null}
+          {bodyworkSentences[1] ? (
+            <QuoteBlock>{bodyworkSentences[1]}</QuoteBlock>
+          ) : null}
+          {bodyworkSentences.slice(2).map((sentence) => (
+            <p key={sentence.slice(0, 18)} className="text-sm leading-8 text-gold-soft">
+              {sentence}
+            </p>
+          ))}
+        </div>
+      </SectionCard>
       <div className="mt-8 flex flex-col gap-3 sm:flex-row">
         <Link
           href="/schedule"
@@ -43,7 +67,9 @@ export default function YogaPage() {
           ◎各クラス随時体験募集中
         </Link>
       </div>
-      <p className="mt-6 text-sm leading-7 text-white/50">{yoga.anan}</p>
+      <SectionCard className="mt-6 px-5 py-5 md:px-6">
+        <QuoteBlock>{yoga.anan}</QuoteBlock>
+      </SectionCard>
     </div>
   );
 }

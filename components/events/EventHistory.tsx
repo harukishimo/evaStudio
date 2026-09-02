@@ -38,7 +38,7 @@ export function EventHistory() {
             <div
               key={year.id}
               id={`history-${year.id}`}
-              className="overflow-hidden rounded-xl border border-white/10"
+              className="overflow-hidden rounded-xl border border-white/10 bg-black/50 backdrop-blur-sm"
             >
               <button
                 type="button"

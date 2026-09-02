@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { MetaChip } from "@/components/ui/MetaChip";
 import { PageHeading } from "@/components/ui/PageHeading";
+import { QuoteBlock } from "@/components/ui/QuoteBlock";
+import { SectionCard } from "@/components/ui/SectionCard";
 import { bellyDance } from "@/content/belly-dance";
 
 export const metadata: Metadata = { title: "ベリーダンス" };
@@ -10,7 +13,7 @@ export default function BellyDancePage() {
     <div>
       <PageHeading title={bellyDance.heading} />
 
-      <div className="overflow-hidden rounded-2xl border border-white/10">
+      <SectionCard padded={false} className="overflow-hidden">
         {bellyDance.days.map((day) => (
           <section
             key={day.day}
@@ -27,31 +30,40 @@ export default function BellyDancePage() {
             </div>
           </section>
         ))}
-      </div>
+      </SectionCard>
 
-      <div className="mt-4 space-y-1 text-sm text-white/50">
+      <div className="mt-4 flex flex-wrap gap-2">
         {bellyDance.notes.map((note) => (
-          <p key={note}>{note}</p>
+          <MetaChip key={note}>{note}</MetaChip>
         ))}
       </div>
 
-      <section className="mt-10 rounded-2xl border border-white/10 bg-black/20 px-5 py-6 md:px-8">
+      <SectionCard className="mt-10">
         <h2 className="font-serif text-2xl text-white">{bellyDance.exerciseTitle}</h2>
-        <div className="mt-4 space-y-4 text-sm leading-8 text-gold-soft">
-          {bellyDance.exercise.map((paragraph) => (
-            <p key={paragraph.slice(0, 18)}>{paragraph}</p>
+        <div className="mt-4 max-w-[40rem] space-y-4">
+          <p className="text-sm leading-8 text-gold">{bellyDance.exercise[0]}</p>
+          {bellyDance.exercise.slice(1, 5).map((paragraph) => (
+            <p key={paragraph.slice(0, 18)} className="text-sm leading-8 text-gold-soft">
+              {paragraph}
+            </p>
+          ))}
+          <QuoteBlock>{bellyDance.exercise[5]}</QuoteBlock>
+          {bellyDance.exercise.slice(6).map((paragraph) => (
+            <p key={paragraph.slice(0, 18)} className="text-sm leading-8 text-gold-soft">
+              {paragraph}
+            </p>
           ))}
         </div>
-      </section>
+      </SectionCard>
 
-      <section className="mt-6 rounded-2xl border border-white/10 px-5 py-6 md:px-8">
+      <SectionCard className="mt-6">
         <h2 className="font-serif text-2xl text-white">{bellyDance.danceTitle}</h2>
-        <div className="mt-4 space-y-4 text-sm leading-8 text-gold-soft">
-          {bellyDance.dance.map((paragraph) => (
-            <p key={paragraph.slice(0, 18)}>{paragraph}</p>
-          ))}
+        <div className="mt-4 max-w-[40rem] space-y-4">
+          <p className="text-sm leading-8 text-gold-soft">{bellyDance.dance[0]}</p>
+          <h3 className="text-gold">{bellyDance.dance[1]}</h3>
+          <p className="text-sm leading-8 text-gold-soft">{bellyDance.dance[2]}</p>
         </div>
-      </section>
+      </SectionCard>
 
       <Link
         href="/trial"

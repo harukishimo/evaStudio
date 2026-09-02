@@ -28,8 +28,7 @@ html {
 }
 
 body {
-  background: radial-gradient(circle at 80% 8%, #2a2340 0%, transparent 36%),
-    radial-gradient(circle at 12% 20%, #1a1428 0%, #050308 55%);
+  background: #050308;
   color: var(--foreground);
   font-family: var(--font-mincho), "Yu Mincho", "Hiragino Mincho ProN", serif;
   min-height: 100%;

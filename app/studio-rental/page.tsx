@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/forms/ContactForm";
+import { FactRow } from "@/components/ui/FactRow";
 import { PageHeading } from "@/components/ui/PageHeading";
+import { SectionCard } from "@/components/ui/SectionCard";
 import { studioRental } from "@/content/pages";
 import { site } from "@/content/site";
 
@@ -11,22 +13,18 @@ export default function StudioRentalPage() {
     <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
       <div>
         <PageHeading title={studioRental.heading} />
-        <div className="rounded-2xl border border-white/10 px-5 py-6 text-gold-soft">
+        <SectionCard>
           {studioRental.facts.map((fact) => (
-            <p key={fact} className="leading-8">
-              {fact}
-            </p>
+            <FactRow key={fact} value={fact} />
           ))}
-          <div className="mt-6 space-y-1">
-            {site.addressLines.map((line) => (
-              <p key={line}>{line}</p>
-            ))}
-          </div>
+          {site.addressLines.map((line) => (
+            <FactRow key={line} value={line} />
+          ))}
           <p className="mt-6 text-sm text-gold">{studioRental.contactLabel}</p>
           <a href={`tel:${site.phoneTel}`} className="mt-1 block text-gold">
             Tel : 070 3261 0512
           </a>
-        </div>
+        </SectionCard>
       </div>
       <div>
         <ContactForm source="studio-rental" />

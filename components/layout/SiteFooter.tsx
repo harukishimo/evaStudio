@@ -1,10 +1,20 @@
+import Image from "next/image";
 import Link from "next/link";
+import { media } from "@/content/media";
 import { site, sns } from "@/content/site";
 
 export function SiteFooter() {
   return (
-    <footer className="mt-16 border-t border-[var(--line)] bg-black/60">
-      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-10 md:grid-cols-3 md:px-8">
+    <footer className="relative mt-16 overflow-hidden border-t border-[var(--line)]">
+      <Image
+        src={media.silkBackground}
+        alt=""
+        fill
+        sizes="100vw"
+        className="object-cover object-center"
+      />
+      <div className="absolute inset-0 bg-[#050308]/78" />
+      <div className="relative z-10 mx-auto grid max-w-6xl gap-8 px-4 py-10 md:grid-cols-3 md:px-8">
         <div>
           <p className="font-serif text-xl text-white">{site.logo}</p>
           <p className="mt-2 text-xs leading-6 text-gold-soft">{site.tagline}</p>
@@ -49,7 +59,7 @@ export function SiteFooter() {
           </a>
         </div>
       </div>
-      <p className="border-t border-white/5 px-4 py-4 text-center text-[11px] text-white/40">
+      <p className="relative z-10 border-t border-white/5 px-4 py-4 text-center text-[11px] text-white/40">
         {site.copyright}
       </p>
     </footer>
