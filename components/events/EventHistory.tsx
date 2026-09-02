@@ -29,27 +29,33 @@ export function EventHistory() {
   }, []);
 
   return (
-    <section id="history" className="mt-12 border border-gold/35 px-4 py-6 md:px-6">
-      <h2 className="font-serif text-3xl tracking-[0.2em] text-gold">History</h2>
+    <section id="history" className="mt-12">
+      <h2 className="font-serif text-3xl text-white">History</h2>
       <div className="mt-6 space-y-3">
         {historyYears.map((year) => {
           const open = openId === year.id;
           return (
-            <div key={year.id} id={`history-${year.id}`}>
+            <div
+              key={year.id}
+              id={`history-${year.id}`}
+              className="overflow-hidden rounded-xl border border-white/10"
+            >
               <button
                 type="button"
-                className="flex w-full items-center justify-between border-b border-[var(--line)] py-3 text-left text-gold"
+                className="flex w-full items-center justify-between px-4 py-4 text-left text-gold"
                 aria-expanded={open}
                 onClick={() => setOpenId(open ? null : year.id)}
               >
                 <span>{year.label}</span>
                 <span aria-hidden>{open ? "−" : "+"}</span>
               </button>
-              {open
-                ? year.events.map((event) => (
+              {open ? (
+                <div className="space-y-3 border-t border-white/10 px-4 py-4">
+                  {year.events.map((event) => (
                     <EventBlock key={event.date} event={event} />
-                  ))
-                : null}
+                  ))}
+                </div>
+              ) : null}
             </div>
           );
         })}

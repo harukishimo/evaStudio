@@ -54,7 +54,7 @@ export function TrialForm() {
     window.setTimeout(() => {
       form.reset();
       setPhase("success");
-    }, 750);
+    }, 1550);
   }
 
   const locked = phase === "sending" || phase === "complete";

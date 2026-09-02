@@ -1,20 +1,15 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Noto_Sans_JP } from "next/font/google";
+import { Noto_Serif_JP } from "next/font/google";
+import { PageLoader } from "@/components/layout/PageLoader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { site } from "@/content/site";
 import "./globals.css";
 
-const display = Cormorant_Garamond({
-  variable: "--font-display",
+const mincho = Noto_Serif_JP({
+  variable: "--font-mincho",
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
-});
-
-const noto = Noto_Sans_JP({
-  variable: "--font-noto",
-  subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -27,13 +22,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang="ja"
-      className={`${display.variable} ${noto.variable} h-full antialiased`}
-    >
+    <html lang="ja" className={`${mincho.variable} ${mincho.className} h-full antialiased`}>
       <body className="flex min-h-full flex-col">
+        <PageLoader />
         <SiteHeader />
-        <main className="mx-auto w-full max-w-5xl flex-1 px-4 py-10 md:px-8">
+        <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-8 md:px-8 md:py-12">
           {children}
         </main>
         <SiteFooter />

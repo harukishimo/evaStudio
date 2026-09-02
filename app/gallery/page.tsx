@@ -10,14 +10,14 @@ export default function GalleryPage() {
 
   return (
     <div>
-      <h1 className="font-serif text-4xl tracking-[0.18em] text-white">
+      <h1 className="font-serif text-3xl text-white md:text-4xl">
         {gallery.heading}
       </h1>
-      <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-4">
+      <div className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
         {items.map((caption) => (
           <figure key={caption}>
-            <MediaSlot label={caption} className="aspect-[4/3]" />
-            <figcaption className="mt-2 text-center text-xs text-gold">
+            <MediaSlot label={caption} className="aspect-[4/3] rounded-lg" />
+            <figcaption className="mt-2 text-xs leading-5 text-gold">
               {caption}
             </figcaption>
           </figure>
@@ -26,7 +26,7 @@ export default function GalleryPage() {
       {visible < gallery.captions.length ? (
         <button
           type="button"
-          className="mx-auto mt-8 block border border-gold/50 px-6 py-2 text-sm text-gold"
+          className="mt-8 h-11 w-full rounded-full border border-gold/50 text-sm text-gold md:w-auto md:px-8"
           onClick={() => setVisible((count) => count + 8)}
         >
           Show More
