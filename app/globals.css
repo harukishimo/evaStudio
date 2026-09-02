@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+:root {
+  --background: #050308;
+  --foreground: #f4f0e6;
+  --gold: #c9a24a;
+  --gold-soft: #e6d3a3;
+  --pink: #e48aa8;
+  --teal: #5ec4c0;
+  --purple: #b07dff;
+  --line: rgba(201, 162, 74, 0.35);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-pink: var(--pink);
+  --color-teal: var(--teal);
+  --color-purple: var(--purple);
+  --font-sans: var(--font-noto);
+  --font-serif: var(--font-display);
+}
+
+html {
+  background: var(--background);
+}
+
+body {
+  background: radial-gradient(circle at 80% 8%, #2a2340 0%, transparent 36%),
+    radial-gradient(circle at 12% 20%, #1a1428 0%, #050308 55%);
+  color: var(--foreground);
+  font-family: var(--font-noto), "Hiragino Mincho ProN", serif;
+  min-height: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  background: rgba(201, 162, 74, 0.35);
+}
+
+@keyframes spin-ring {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes check-draw {
+  from {
+    stroke-dashoffset: 24;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fade-out {
+  to {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+}
+
+.spin-ring {
+  animation: spin-ring 0.9s linear infinite;
+}
+
+.check-draw {
+  stroke-dasharray: 24;
+  stroke-dashoffset: 24;
+  animation: check-draw 0.45s ease forwards;
+}
+
+.fade-away {
+  animation: fade-out 0.28s ease forwards;
+}
